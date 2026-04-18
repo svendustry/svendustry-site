@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Hall of Svendustry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --stone:#1A1714;
+  --stone-2:#221F1B;
+  --stone-3:#2C2824;
+  --stone-4:#3A3530;
+  --gold:#C9933A;
+  --gold-light:#E8B86D;
+  --gold-dim:#7A5A1E;
+  --ember:#8B2A2A;
+  --parchment:#F0E8D8;
+  --parchment-dim:#9A8E7A;
+  --parchment-ghost:#4A4038;
+  --rune:#C9933A;
+  --active:#4A8C5C;
+  --active-dim:#2A5C3A;
+}
+body{background:var(--stone);color:var(--parchment);font-family:'Crimson Pro',Georgia,serif;min-height:100vh;overflow-x:hidden}
+
+header{padding:32px 40px 24px;border-bottom:1px solid var(--stone-4);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+.hall-title{display:flex;align-items:center;gap:16px}
+.rune-deco{font-size:28px;color:var(--gold);opacity:0.6;font-family:'Cinzel',serif}
+h1{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold-light);letter-spacing:2px;line-height:1.2}
+.hall-sub{font-size:13px;color:var(--parchment-dim);margin-top:4px;font-style:italic}
+
+.gateway-panel{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.status-pill{display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--stone-2);border:0.5px solid var(--stone-4);border-radius:20px;font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-connected{background:var(--active)}
+.dot-disconnected{background:var(--ember)}
+.dot-idle{background:var(--parchment-ghost)}
+.dot-pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.token-input{display:flex;gap:8px;align-items:center}
+.token-input input{background:var(--stone-2);border:0.5px solid var(--stone-4);color:var(--parchment);padding:6px 12px;border-radius:6px;font-family:'Crimson Pro',serif;font-size:13px;width:340px}
+.token-input input:focus{outline:none;border-color:var(--gold-dim)}
+.btn{background:transparent;border:0.5px solid var(--gold-dim);color:var(--gold);padding:6px 16px;border-radius:6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;cursor:pointer}
+.btn:hover{background:rgba(201,147,58,0.1)}
+
+.stat-bar{display:flex;gap:0;background:var(--stone-2);border-bottom:1px solid var(--stone-4);padding:0 40px}
+.stat{padding:14px 24px;border-right:0.5px solid var(--stone-4);display:flex;flex-direction:column;gap:3px}
+.stat:last-child{border-right:none}
+.stat-val{font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);font-weight:600}
+.stat-lbl{font-size:11px;color:var(--parchment-ghost);letter-spacing:2px;text-transform:uppercase}
+
+main{padding:32px 40px;max-width:1400px;margin:0 auto}
+
+.section-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:28px 0 12px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:0.5px;background:var(--stone-4)}
+.section-label span{font-size:14px;opacity:0.5}
+
+.featured-card{background:var(--stone-2);border:0.5px solid var(--gold-dim);border-radius:8px;padding:20px 24px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s}
+.featured-card:hover{border-color:var(--gold)}
+.featured-header{display:flex;justify-content:space-between;align-items:flex-start}
+.agent-name{font-family:'Cinzel',serif;font-size:20px;color:var(--gold-light);margin-bottom:4px}
+.agent-role{font-size:14px;color:var(--parchment-dim);font-style:italic;margin-bottom:10px}
+.agent-model{font-size:11px;color:var(--parchment-ghost);letter-spacing:1px}
+.agent-rune{font-size:36px;color:var(--gold);opacity:0.2;font-family:'Cinzel',serif}
+.status-row{display:flex;align-items:center;gap:10px;margin-top:14px}
+.status-text{font-size:12px;color:var(--parchment-dim)}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:8px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:8px}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:8px}
+
+.agent-card{background:var(--stone-2);border:0.5px solid var(--stone-4);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s,background 0.2s}
+.agent-card:hover{border-color:var(--gold-dim);background:var(--stone-3)}
+.agent-card .agent-name{font-size:15px;margin-bottom:2px}
+.agent-card .agent-role{font-size:12px;margin-bottom:6px}
+.agent-card .agent-model{font-size:10px}
+
+.spawn-card{background:transparent;border:0.5px dashed var(--stone-4);border-radius:8px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;transition:border-color 0.2s;min-height:90px}
+.spawn-card:hover{border-color:var(--gold-dim)}
+.spawn-icon{font-size:20px;color:var(--stone-4)}
+.spawn-text{font-size:11px;color:var(--parchment-ghost);letter-spacing:1px;text-transform:uppercase}
+
+.dispatch-btn{width:100%;margin-top:12px;background:transparent;border:0.5px solid var(--gold-dim);color:var(--gold);padding:8px;border-radius:6px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase}
+.dispatch-btn:hover{background:rgba(201,147,58,0.1)}
+
+footer{margin-top:40px;padding:20px 40px;border-top:1px solid var(--stone-4);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-brand{font-family:'Cinzel',serif;font-size:10px;color:var(--stone-4);letter-spacing:3px}
+.footer-actions{display:flex;gap:12px}
+#log-panel{background:var(--stone-2);border:0.5px solid var(--stone-4);border-radius:8px;padding:16px;margin-top:24px;font-family:'Courier New',monospace;font-size:11px;color:var(--parchment-dim);height:120px;overflow-y:auto;display:none}
+#log-panel.visible{display:block}
+.log-line{margin-bottom:4px;line-height:1.4}
+.log-ok{color:var(--active)}
+.log-err{color:var(--ember)}
+.log-info{color:var(--gold-dim)}
+
+.tokens-bar{height:3px;background:var(--stone-4);border-radius:2px;margin-top:8px;overflow:hidden}
+.tokens-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.5s}
+
+@media(max-width:768px){
+  header,main,footer{padding-left:20px;padding-right:20px}
+  .stat-bar{padding:0 20px;flex-wrap:wrap}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .token-input input{width:200px}
+  h1{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hall-title">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="rune-deco">ᚷ</span>
+        <h1>The Great Hall of Svendustry</h1>
+        <span class="rune-deco">ᚷ</span>
+      </div>
+      <div class="hall-sub">12 warriors bound by oath &middot; Surface Book II &middot; Peoria, AZ &middot; Obsidian Holdings Group LLC</div>
+    </div>
+  </div>
+  <div class="gateway-panel">
+    <div class="status-pill">
+      <div class="dot dot-disconnected dot-pulse" id="gw-dot"></div>
+      <span id="gw-status">Connecting...</span>
+    </div>
+    <div class="token-input">
+      <input type="password" id="token-input" placeholder="Gateway token..." value="">
+      <button class="btn" onclick="connect()">Connect</button>
+    </div>
+  </div>
+</header>
+
+<div class="stat-bar">
+  <div class="stat"><div class="stat-val">12</div><div class="stat-lbl">Warriors</div></div>
+  <div class="stat"><div class="stat-val" id="stat-active">0</div><div class="stat-lbl">Active</div></div>
+  <div class="stat"><div class="stat-val">Sonnet 4.6</div><div class="stat-lbl">Commander</div></div>
+  <div class="stat"><div class="stat-val" id="stat-tokens">?</div><div class="stat-lbl">Tokens used</div></div>
+  <div class="stat"><div class="stat-val" id="stat-phase">Phase 2</div><div class="stat-lbl">Current phase</div></div>
+  <div class="stat"><div class="stat-val" id="stat-time">--:--</div><div class="stat-lbl">Local time</div></div>
+</div>
+
+<main>
+
+  <div class="section-label"><span>ᚺ</span> The High Seat — Command</div>
+  <div class="featured-card" onclick="dispatch('main','odin')">
+    <div class="featured-header">
+      <div>
+        <div class="agent-name">Odin — The Allfather</div>
+        <div class="agent-role">Strategic Manager &middot; Orchestrates all operations</div>
+        <div class="agent-model">claude-sonnet-4-6 &middot; think adaptive &middot; 200k context</div>
+      </div>
+      <div class="agent-rune">ᚨ</div>
+    </div>
+    <div class="tokens-bar"><div class="tokens-fill" id="odin-tokens" style="width:0%"></div></div>
+    <div class="status-row">
+      <div class="dot dot-idle" id="dot-main"></div>
+      <span class="status-text" id="status-main">Idle &middot; Awaiting orders from Sven</span>
+    </div>
+    <button class="dispatch-btn">Dispatch Odin &rarr;</button>
+  </div>
+
+  <div class="section-label"><span>ᚺ</span> The Watch Tower — Intelligence</div>
+  <div class="grid-2">
+    <div class="agent-card" onclick="dispatch('heimdall','heimdall')">
+      <div class="agent-name">Heimdall</div>
+      <div class="agent-role">Opportunity Scout</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-heimdall"></div><span class="status-text" id="status-heimdall">Watching the horizons</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('ran','ran')">
+      <div class="agent-name">Rán</div>
+      <div class="agent-role">Music Trends Scout</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-ran"></div><span class="status-text" id="status-ran">Reading the tides</span></div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>ᚺ</span> The Forge — Build &amp; Finance</div>
+  <div class="grid-3">
+    <div class="agent-card" onclick="dispatch('thor','thor')">
+      <div class="agent-name">Thor</div>
+      <div class="agent-role">Vending Software Builder</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-thor"></div><span class="status-text" id="status-thor">Hammer at rest</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('frigg','frigg')">
+      <div class="agent-name">Frigg</div>
+      <div class="agent-role">CFO &middot; Budget &amp; Revenue</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-frigg"></div><span class="status-text" id="status-frigg">Keeping the hall</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('tyr','tyr')">
+      <div class="agent-name">Týr</div>
+      <div class="agent-role">Data &amp; P&amp;L Analyst</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-tyr"></div><span class="status-text" id="status-tyr">Scales balanced</span></div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>ᚺ</span> The Library of Mimir — Knowledge</div>
+  <div class="grid-2">
+    <div class="agent-card" onclick="dispatch('mimir','mimir')">
+      <div class="agent-name">Mimir</div>
+      <div class="agent-role">Vending Market Research</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-mimir"></div><span class="status-text" id="status-mimir">Deep in thought</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('bragi','bragi')">
+      <div class="agent-name">Bragi</div>
+      <div class="agent-role">Copy, Docs &amp; Content</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-bragi"></div><span class="status-text" id="status-bragi">Quill at rest</span></div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>ᚺ</span> The Music Hall — Creation &amp; Distribution</div>
+  <div class="grid-3">
+    <div class="agent-card" onclick="dispatch('freya','freya')">
+      <div class="agent-name">Freya</div>
+      <div class="agent-role">Music Creator</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-freya"></div><span class="status-text" id="status-freya">Silent strings</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('hermod','hermod')">
+      <div class="agent-name">Hermod</div>
+      <div class="agent-role">Music Publisher</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-hermod"></div><span class="status-text" id="status-hermod">Roads are clear</span></div>
+    </div>
+    <div class="agent-card" onclick="dispatch('loki','loki')">
+      <div class="agent-name">Loki</div>
+      <div class="agent-role">AI Visual Creator</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-loki"></div><span class="status-text" id="status-loki">In disguise</span></div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>ᚺ</span> The Shield Wall — General Operations</div>
+  <div class="grid-2">
+    <div class="agent-card" onclick="dispatch('eivor','eivor')">
+      <div class="agent-name">Eivor</div>
+      <div class="agent-role">Shield-Maiden &middot; General Tasks</div>
+      <div class="agent-model">gemini-3.1-flash-lite</div>
+      <div class="status-row"><div class="dot dot-idle" id="dot-eivor"></div><span class="status-text" id="status-eivor">Shield at ready</span></div>
+    </div>
+    <div class="spawn-card" onclick="openTui()">
+      <div class="spawn-icon">+</div>
+      <div class="spawn-text">Summon new warrior</div>
+    </div>
+  </div>
+
+  <div id="log-panel"></div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">ᚠ Svendustry &middot; Peoria AZ &middot; Est. 2025 ᚠ</div>
+  <div class="footer-actions">
+    <button class="btn" onclick="toggleLog()">Toggle Log</button>
+    <button class="btn" onclick="dispatch('main','status')">Status Report &rarr;</button>
+  </div>
+</footer>
+
+<script>
+let ws = null;
+let connected = false;
+let activeCount = 0;
+
+const TOKEN_KEY = 'svendustry_gw_token';
+const URL_KEY = 'svendustry_gw_url';
+
+function log(msg, type='info') {
+  const panel = document.getElementById('log-panel');
+  const line = document.createElement('div');
+  line.className = 'log-line log-' + type;
+  line.textContent = new Date().toLocaleTimeString() + ' — ' + msg;
+  panel.appendChild(line);
+  panel.scrollTop = panel.scrollHeight;
+}
+
+function toggleLog() {
+  const p = document.getElementById('log-panel');
+  p.classList.toggle('visible');
+}
+
+function setStatus(connected_) {
+  const dot = document.getElementById('gw-dot');
+  const txt = document.getElementById('gw-status');
+  if (connected_) {
+    dot.className = 'dot dot-connected';
+    txt.textContent = 'Gateway connected';
+  } else {
+    dot.className = 'dot dot-disconnected dot-pulse';
+    txt.textContent = 'Disconnected';
+  }
+}
+
+function connect() {
+  const token = document.getElementById('token-input').value.trim();
+  if (!token) { alert('Enter your gateway token'); return; }
+  localStorage.setItem(TOKEN_KEY, token);
+  if (ws) { ws.close(); ws = null; }
+  attemptConnect(token);
+}
+
+function attemptConnect(token) {
+  const url = 'ws://127.0.0.1:18789';
+  log('Connecting to ' + url, 'info');
+  try {
+    ws = new WebSocket(url);
+    ws.onopen = () => {
+      ws.send(JSON.stringify({ type: 'auth', token }));
+      log('WebSocket open, authenticating...', 'info');
+    };
+    ws.onmessage = (e) => {
+      try {
+        const d = JSON.parse(e.data);
+        handleMessage(d);
+      } catch {}
+    };
+    ws.onclose = () => {
+      connected = false;
+      setStatus(false);
+      log('Gateway disconnected', 'err');
+      setTimeout(() => { if (!connected) attemptConnect(token); }, 5000);
+    };
+    ws.onerror = () => {
+      log('Connection error — is the gateway running?', 'err');
+    };
+  } catch(e) {
+    log('Failed to connect: ' + e.message, 'err');
+  }
+}
+
+function handleMessage(d) {
+  if (d.type === 'auth_ok' || d.type === 'welcome' || d.authenticated) {
+    connected = true;
+    setStatus(true);
+    log('Authenticated — Great Hall online', 'ok');
+    return;
+  }
+  if (d.type === 'status' || d.usage) {
+    const tokens = d.usage?.input_tokens || d.tokens;
+    if (tokens) {
+      const pct = Math.round((tokens / 200000) * 100);
+      document.getElementById('stat-tokens').textContent = Math.round(tokens/1000) + 'k';
+      document.getElementById('odin-tokens').style.width = Math.min(pct, 100) + '%';
+    }
+  }
+}
+
+function setAgentActive(id, active, msg) {
+  const dot = document.getElementById('dot-' + id);
+  const status = document.getElementById('status-' + id);
+  if (!dot) return;
+  if (active) {
+    dot.className = 'dot dot-connected dot-pulse';
+    activeCount++;
+    document.getElementById('stat-active').textContent = activeCount;
+  } else {
+    dot.className = 'dot dot-idle';
+  }
+  if (status && msg) status.textContent = msg;
+}
+
+const dispatches = {
+  odin: 'Odin, give me a full status report of the Great Hall. What is each department working on and what are our top priorities?',
+  heimdall: 'Dispatch Heimdall to scout for new business opportunities. Search for trending niches and emerging markets this week.',
+  ran: 'Send Ran to research trending lo-fi and concentration music on YouTube and Spotify right now.',
+  thor: 'Thor — report on the Vending Co-Pilot Route Planner build. What is your current progress and what do you need?',
+  frigg: 'Frigg — give me a financial report. What is our current API spend and what are our projected monthly costs?',
+  tyr: 'Tyr — analyze the vending research data. What is the highest priority feature to build first for maximum operator value?',
+  mimir: 'Mimir — what new competitor intelligence have you gathered? Any updates since your last report?',
+  bragi: 'Bragi — draft a 3-sentence tagline for the Vending Co-Pilot SaaS product.',
+  freya: 'Freya — generate 5 Suno prompts for lo-fi concentration music tracks we should create this week.',
+  hermod: 'Hermod — what is our music distribution strategy and what platforms should we prioritize first?',
+  loki: 'Loki — generate 5 AI image prompts for YouTube concentration music video backgrounds.',
+  eivor: 'Eivor — what administrative tasks need attention across Svendustry this week?',
+  status: 'Odin, give me a complete status report. Read HEARTBEAT.md and TASKS.md. What has been completed, what is in progress, what is blocked, and what is our top priority right now?'
+};
+
+function dispatch(agentId, key) {
+  const msg = dispatches[key] || dispatches['odin'];
+  setAgentActive(agentId, true, 'Dispatched...');
+  if (connected && ws && ws.readyState === 1) {
+    log('Dispatching ' + agentId + '...', 'info');
+  }
+  window.open('', '_blank');
+  alert('Open your TUI and paste:\n\n' + msg);
+}
+
+function openTui() {
+  alert('Run in terminal:\ntui\n\nThen tell Odin: I want to add a new warrior to the Great Hall. What role should we create?');
+}
+
+function updateClock() {
+  document.getElementById('stat-time').textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+updateClock();
+setInterval(updateClock, 10000);
+
+const saved = localStorage.getItem(TOKEN_KEY);
+if (saved) {
+  document.getElementById('token-input').value = saved;
+  attemptConnect(saved);
+}
+</script>
+</body>
+</html>
