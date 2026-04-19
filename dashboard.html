@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command Log — Great Hall of Svendustry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --stone:#1A1714;
+  --stone-2:#221F1B;
+  --stone-3:#2C2824;
+  --stone-4:#3A3530;
+  --gold:#C9933A;
+  --gold-light:#E8B86D;
+  --gold-dim:#7A5A1E;
+  --ember:#C97B3A;
+  --ember-dim:#7A4A1E;
+  --parchment:#F0E8D8;
+  --parchment-dim:#9A8E7A;
+  --parchment-ghost:#4A4038;
+  --active:#4A8C5C;
+  --fog:#6E7A8A;
+}
+
+body{
+  background:var(--stone);
+  color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── LOGIN SCREEN ── */
+#login-screen{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:24px;
+  background:radial-gradient(ellipse at center, #2C2218 0%, var(--stone) 70%);
+}
+
+.login-sigil{
+  font-size:48px;
+  margin-bottom:16px;
+  opacity:0.8;
+}
+
+.login-title{
+  font-family:'Cinzel',serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--gold-light);
+  letter-spacing:3px;
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.login-sub{
+  font-size:14px;
+  color:var(--parchment-dim);
+  font-style:italic;
+  margin-bottom:40px;
+  letter-spacing:1px;
+}
+
+.login-box{
+  background:var(--stone-2);
+  border:1px solid var(--stone-4);
+  border-radius:10px;
+  padding:32px 40px;
+  width:100%;
+  max-width:380px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.login-label{
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--parchment-dim);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+.login-input{
+  width:100%;
+  background:var(--stone-3);
+  border:1px solid var(--stone-4);
+  border-radius:6px;
+  color:var(--parchment);
+  font-family:'Crimson Pro',serif;
+  font-size:16px;
+  padding:10px 14px;
+  letter-spacing:3px;
+  transition:border-color 0.2s;
+}
+.login-input:focus{
+  outline:none;
+  border-color:var(--gold-dim);
+}
+.login-input.error{
+  border-color:#8B2A2A;
+  animation:shake 0.3s ease;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+
+.login-btn{
+  width:100%;
+  background:transparent;
+  border:1px solid var(--gold-dim);
+  color:var(--gold);
+  padding:10px;
+  border-radius:6px;
+  font-family:'Cinzel',serif;
+  font-size:12px;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:background 0.2s, border-color 0.2s;
+  margin-top:4px;
+}
+.login-btn:hover{
+  background:rgba(201,147,58,0.12);
+  border-color:var(--gold);
+}
+
+.login-error{
+  font-size:13px;
+  color:#C06060;
+  text-align:center;
+  font-style:italic;
+  min-height:18px;
+}
+
+/* ── DASHBOARD ── */
+#dashboard{
+  display:none;
+  min-height:100vh;
+}
+
+header{
+  padding:28px 40px 20px;
+  border-bottom:1px solid var(--stone-4);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:16px;
+  background:var(--stone-2);
+}
+
+.hall-title{display:flex;align-items:center;gap:14px}
+.rune-deco{font-size:26px;color:var(--gold);opacity:0.7}
+h1{
+  font-family:'Cinzel',serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--gold-light);
+  letter-spacing:2px;
+  line-height:1.2;
+}
+.hall-sub{
+  font-size:12px;
+  color:var(--parchment-dim);
+  margin-top:4px;
+  font-style:italic;
+}
+
+.header-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+
+.last-updated{
+  font-size:12px;
+  color:var(--parchment-ghost);
+  font-style:italic;
+}
+
+.logout-btn{
+  background:transparent;
+  border:none;
+  color:var(--parchment-ghost);
+  font-family:'Cinzel',serif;
+  font-size:10px;
+  letter-spacing:1px;
+  cursor:pointer;
+  padding:4px 0;
+  transition:color 0.2s;
+}
+.logout-btn:hover{color:var(--parchment-dim)}
+
+/* ── MAIN CONTENT ── */
+main{
+  max-width:860px;
+  margin:0 auto;
+  padding:40px 24px 80px;
+}
+
+.section-label{
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--parchment-ghost);
+  text-transform:uppercase;
+  margin-bottom:24px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--stone-3);
+}
+
+/* ── SESSION CARD ── */
+.session-card{
+  background:var(--stone-2);
+  border:1px solid var(--stone-4);
+  border-radius:10px;
+  margin-bottom:28px;
+  overflow:hidden;
+}
+
+.session-card.latest{
+  border-color:var(--ember-dim);
+}
+
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+  background:var(--stone-3);
+  border-bottom:1px solid var(--stone-4);
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.session-date{
+  font-family:'Cinzel',serif;
+  font-size:14px;
+  font-weight:600;
+  color:var(--gold-light);
+  letter-spacing:1px;
+}
+
+.latest-badge{
+  font-size:10px;
+  font-family:'Cinzel',serif;
+  letter-spacing:1.5px;
+  color:var(--ember);
+  border:1px solid var(--ember-dim);
+  border-radius:20px;
+  padding:2px 10px;
+  text-transform:uppercase;
+}
+
+/* ── METRICS ROW ── */
+.metrics-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--stone-4);
+  border-bottom:1px solid var(--stone-4);
+}
+
+.metric{
+  background:var(--stone-2);
+  padding:16px 18px;
+  text-align:center;
+}
+
+.metric-value{
+  font-family:'Cinzel',serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--gold);
+  line-height:1;
+}
+
+.metric-label{
+  font-size:11px;
+  color:var(--parchment-dim);
+  margin-top:5px;
+  letter-spacing:0.5px;
+}
+
+/* ── HIGHLIGHTS ── */
+.highlights{
+  padding:20px 24px 24px;
+}
+
+.highlights-label{
+  font-family:'Cinzel',serif;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--parchment-ghost);
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+
+.highlight-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.highlight-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:15px;
+  line-height:1.5;
+  color:var(--parchment);
+}
+
+.highlight-item::before{
+  content:'⬥';
+  color:var(--ember);
+  font-size:10px;
+  margin-top:5px;
+  flex-shrink:0;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+  text-align:center;
+  padding:60px 24px;
+  color:var(--parchment-dim);
+  font-style:italic;
+  font-size:16px;
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--stone-3);
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.footer-rune{
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  color:var(--parchment-ghost);
+  letter-spacing:2px;
+}
+
+.footer-link{
+  font-size:12px;
+  color:var(--parchment-ghost);
+  text-decoration:none;
+}
+.footer-link:hover{color:var(--parchment-dim)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  header{padding:20px 20px 16px}
+  h1{font-size:18px}
+  main{padding:24px 16px 60px}
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
+  .metric-value{font-size:18px}
+  .card-header{padding:14px 16px}
+  .highlights{padding:16px 16px 20px}
+  .highlight-item{font-size:14px}
+  .login-box{padding:24px 20px}
+}
+
+@media(max-width:360px){
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-sigil">⚔️</div>
+  <div class="login-title">Great Hall of Svendustry</div>
+  <div class="login-sub">Command Log — Restricted Access</div>
+  <div class="login-box">
+    <div>
+      <div class="login-label">Passphrase</div>
+      <input
+        type="password"
+        id="pw-input"
+        class="login-input"
+        placeholder="••••••••••••"
+        autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')doLogin()"
+      />
+    </div>
+    <button class="login-btn" onclick="doLogin()">ENTER THE HALL</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <header>
+    <div class="hall-title">
+      <span class="rune-deco">⚔️</span>
+      <div>
+        <h1>Great Hall of Svendustry — Command Log</h1>
+        <div class="hall-sub">Operational record of the Great Hall · Odin presiding</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="last-updated" id="last-updated-label">Loading...</div>
+      <button class="logout-btn" onclick="doLogout()">⬥ Seal the Hall</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Session Records</div>
+    <div id="session-feed">
+      <div class="empty-state">Loading records from the archive...</div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-rune">SVENDUSTRY · OBSIDIAN HOLDINGS GROUP LLC</span>
+    <a href="great-hall.html" class="footer-link">← Great Hall</a>
+  </footer>
+</div>
+
+<script>
+const CORRECT_PW = 'greathal2026';
+const SESSION_KEY = 'gh_cmd_auth';
+
+function doLogin() {
+  const val = document.getElementById('pw-input').value;
+  const errEl = document.getElementById('login-error');
+  if (val === CORRECT_PW) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    errEl.textContent = '';
+    showDashboard();
+  } else {
+    errEl.textContent = 'The runes do not match. Try again.';
+    const inp = document.getElementById('pw-input');
+    inp.classList.add('error');
+    inp.value = '';
+    setTimeout(() => inp.classList.remove('error'), 500);
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pw-input').value = '';
+}
+
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadData();
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('dashboard-data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+
+    document.getElementById('last-updated-label').textContent =
+      'Last updated: ' + formatDate(data.lastUpdated);
+
+    const feed = document.getElementById('session-feed');
+    if (!data.sessions || data.sessions.length === 0) {
+      feed.innerHTML = '<div class="empty-state">No sessions recorded yet.</div>';
+      return;
+    }
+
+    // Sort most recent first
+    const sessions = [...data.sessions].sort((a,b) => b.date.localeCompare(a.date));
+    feed.innerHTML = sessions.map((s, i) => buildCard(s, i === 0)).join('');
+  } catch(e) {
+    document.getElementById('session-feed').innerHTML =
+      '<div class="empty-state">Could not load session data. Check dashboard-data.json.</div>';
+  }
+}
+
+function buildCard(session, isLatest) {
+  const m = session.metrics || {};
+  const highlights = (session.highlights || []).map(h =>
+    `<li class="highlight-item">${escHtml(h)}</li>`
+  ).join('');
+
+  return `
+<div class="session-card${isLatest ? ' latest' : ''}">
+  <div class="card-header">
+    <span class="session-date">${escHtml(formatDate(session.date))}</span>
+    ${isLatest ? '<span class="latest-badge">Latest</span>' : ''}
+  </div>
+  <div class="metrics-row">
+    <div class="metric">
+      <div class="metric-value">${escHtml(String(m.tasksCompleted ?? '—'))}</div>
+      <div class="metric-label">Tasks Completed</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">${escHtml(String(m.agentsDeployed ?? '—'))}</div>
+      <div class="metric-label">Agents Deployed</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">${escHtml(String(m.avgTPS ?? '—'))}</div>
+      <div class="metric-label">Avg TPS</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">${escHtml(String(m.apiSpend ?? '—'))}</div>
+      <div class="metric-label">API Spend</div>
+    </div>
+  </div>
+  <div class="highlights">
+    <div class="highlights-label">Session Highlights</div>
+    <ul class="highlight-list">${highlights}</ul>
+  </div>
+</div>`;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Auto-check session on load
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  showDashboard();
+}
+</script>
+</body>
+</html>
