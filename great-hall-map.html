@@ -156,15 +156,85 @@ h1{
 .room-music-hall  { grid-column:1; grid-row:3; }
 .room-library     { grid-column:3; grid-row:3; }
 
-/* Center connector (decorative) */
-.center-deco{
+/* MEAD HALL — center */
+.room-mead-hall{
   grid-column:2; grid-row:2;
+  background:rgba(201,123,58,0.15);
+  border:2px solid #C97B3A;
+  border-radius:10px;
+  padding:1rem;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0.25;
-  font-size:3rem;
-  pointer-events:none;
+  flex-direction:column;
+  min-height:180px;
+  transition:box-shadow 0.25s, border-color 0.25s;
+}
+.room-mead-hall:hover{
+  box-shadow:0 0 24px rgba(201,123,58,0.5), 0 0 8px rgba(201,123,58,0.3);
+  border-color:#E8B86D;
+}
+.room-mead-hall .room-name{
+  font-size:0.8rem;
+}
+.room-mead-hall .room-subtitle{
+  font-size:0.7rem;
+  color:#a07040;
+  font-style:italic;
+  margin-top:-0.4rem;
+  margin-bottom:0.6rem;
+  font-family:'Crimson Pro',serif;
+}
+.mead-hall-footer{
+  margin-top:auto;
+  padding-top:0.5rem;
+  display:flex;
+  justify-content:flex-end;
+}
+.milestone-btn{
+  background:rgba(201,123,58,0.15);
+  border:1px solid #C97B3A;
+  color:#C97B3A;
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:0.05em;
+  padding:0.25rem 0.6rem;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+.milestone-btn:hover{background:rgba(201,123,58,0.3)}
+.milestone-msg{
+  font-family:'Cinzel',serif;
+  font-size:0.72rem;
+  color:#E8B86D;
+  font-style:italic;
+  opacity:0;
+  transition:opacity 0.4s;
+  margin-top:0.3rem;
+  text-align:center;
+}
+.milestone-msg.show{opacity:1}
+
+/* Pulse animation for milestone */
+@keyframes mead-pulse{
+  0%{box-shadow:0 0 0 0 rgba(201,123,58,0.8)}
+  50%{box-shadow:0 0 28px 8px rgba(201,123,58,0.5)}
+  100%{box-shadow:0 0 0 0 rgba(201,123,58,0.0)}
+}
+.room-mead-hall.celebrating{
+  animation:mead-pulse 1s ease-in-out 3;
+  border-color:#E8B86D;
+}
+
+/* Ember ring for idle warriors in Mead Hall */
+.warrior.mead-idle{
+  background:#4a5568;
+  width:50px;
+  height:50px;
+  box-shadow:0 0 0 2px rgba(201,123,58,0.7), 0 0 8px rgba(201,123,58,0.4);
+}
+.warrior.mead-idle:hover{
+  transform:scale(1.12);
+  box-shadow:0 0 0 2px #C97B3A, 0 0 14px rgba(201,123,58,0.7);
 }
 
 /* DETAIL PANEL */
@@ -282,7 +352,7 @@ h1{
   .room-forge       { grid-column:2; grid-row:2; }
   .room-music-hall  { grid-column:1; grid-row:3; }
   .room-library     { grid-column:2; grid-row:3; }
-  .center-deco      { display:none; }
+  .room-mead-hall   { grid-column:1 / span 2; grid-row:4; min-height:140px; }
   .detail-panel{width:100%;right:-100%}
   .detail-panel.open{right:0}
 }
@@ -319,8 +389,18 @@ h1{
       <div class="warriors" id="room-shield-wall"></div>
     </div>
 
-    <!-- Center deco -->
-    <div class="center-deco">⚔️</div>
+    <!-- Mead Hall: center -->
+    <div class="room room-mead-hall" id="room-mead-hall-box">
+      <div class="room-name">🍺 Mead Hall — Gathering Chamber</div>
+      <div class="room-subtitle">Warriors at rest. Ready for the call.</div>
+      <div class="warriors" id="room-mead-hall"></div>
+      <div class="mead-hall-footer">
+        <div style="flex:1">
+          <div class="milestone-msg" id="milestone-msg">The Hall celebrates! ⚔️🍺</div>
+        </div>
+        <button class="milestone-btn" onclick="triggerMilestone()">🎉 Milestone</button>
+      </div>
+    </div>
 
     <!-- The Forge: right -->
     <div class="room room-forge">
@@ -366,18 +446,18 @@ if (sessionStorage.getItem('gh_auth') !== 'true') {
 
 const WARRIORS = [
   { name:'Odin',    title:'Allfather',         room:'high-seat',   model:'Gemini 2.5 Flash',  role:'Strategic manager',       status:'Orchestrating Phase 2',              active:true  },
-  { name:'Heimdall',title:'Watchman',           room:'watch-tower', model:'Gemini Flash Lite', role:'Opportunity scout',       status:'Standing watch',                     active:false },
-  { name:'Rán',     title:'Reader of Tides',    room:'watch-tower', model:'Gemini Flash Lite', role:'Music trend research',    status:'Pipeline redesign complete',         active:false },
+  { name:'Heimdall',title:'Watchman',           room:'mead-hall',   model:'Gemini Flash Lite', role:'Opportunity scout',       status:'Standing watch',                     active:false },
+  { name:'Rán',     title:'Reader of Tides',    room:'mead-hall',   model:'Gemini Flash Lite', role:'Music trend research',    status:'Pipeline redesign complete',         active:false },
   { name:'Thor',    title:'The Builder',        room:'forge',       model:'DeepSeek V3.2',     role:'Builder',                 status:'Building Great Hall map',            active:true  },
-  { name:'Frigg',   title:'Keeper of the Hall', room:'forge',       model:'Gemini Flash Lite', role:'CFO',                     status:'Monitoring API costs',               active:false },
+  { name:'Frigg',   title:'Keeper of the Hall', room:'mead-hall',   model:'Gemini Flash Lite', role:'CFO',                     status:'Monitoring API costs',               active:false },
   { name:'Tyr',     title:'God of Justice',     room:'forge',       model:'Gemini Flash Lite', role:'Data analyst',            status:'TPS Framework v1.0 complete',        active:true  },
   { name:'Vidar',   title:'The Silent One',     room:'forge',       model:'Gemini Flash Lite', role:'Infrastructure',          status:'Watchdog active, Tailscale live',    active:true  },
-  { name:'Mimir',   title:'The Wise',           room:'library',     model:'DeepSeek V3.2',     role:'Researcher',              status:'Income opportunity analysis complete',active:false },
+  { name:'Mimir',   title:'The Wise',           room:'mead-hall',   model:'DeepSeek V3.2',     role:'Researcher',              status:'Income opportunity analysis complete',active:false },
   { name:'Bragi',   title:'God of Poetry',      room:'library',     model:'Gemini 2.5 Pro',    role:'Writer',                  status:'Identity files for Rán and Hermod written', active:true },
-  { name:'Freya',   title:'Mistress of Song',   room:'music-hall',  model:'Gemini Flash Lite', role:'Music creator',           status:'20-prompt library queued',           active:false },
-  { name:'Hermod',  title:'The Messenger',      room:'music-hall',  model:'Gemini Flash Lite', role:'Music publisher',         status:'JSON pipeline ready',                active:false },
+  { name:'Freya',   title:'Mistress of Song',   room:'mead-hall',   model:'Gemini Flash Lite', role:'Music creator',           status:'20-prompt library queued',           active:false },
+  { name:'Hermod',  title:'The Messenger',      room:'mead-hall',   model:'Gemini Flash Lite', role:'Music publisher',         status:'JSON pipeline ready',                active:false },
   { name:'Loki',    title:'The Shapeshifter',   room:'music-hall',  model:'Gemini Flash Lite', role:'Visual creator',          status:'Great Hall map art complete',        active:true  },
-  { name:'Eivor',   title:'Shield-Maiden',      room:'shield-wall', model:'Gemini Flash Lite', role:'General worker',          status:'Standing by',                        active:false },
+  { name:'Eivor',   title:'Shield-Maiden',      room:'mead-hall',   model:'Gemini Flash Lite', role:'General worker',          status:'Standing by',                        active:false },
 ];
 
 function initials(name) {
@@ -395,7 +475,8 @@ function buildRooms() {
     wrap.style.gap = '20px';
 
     const circle = document.createElement('div');
-    circle.className = 'warrior ' + (w.active ? 'active' : 'idle');
+    const inMead = w.room === 'mead-hall';
+    circle.className = 'warrior ' + (w.active ? 'active' : (inMead ? 'mead-idle' : 'idle'));
     circle.textContent = initials(w.name);
     circle.title = w.name;
     circle.onclick = () => openPanel(i);
@@ -454,9 +535,23 @@ function roomLabel(room) {
     'forge':'The Forge',
     'library':'Library of Mimir',
     'music-hall':'Music Hall',
-    'shield-wall':'Shield Wall'
+    'shield-wall':'Shield Wall',
+    'mead-hall':'Mead Hall'
   };
   return map[room] || room;
+}
+
+function triggerMilestone() {
+  const box = document.getElementById('room-mead-hall-box');
+  const msg = document.getElementById('milestone-msg');
+  box.classList.remove('celebrating');
+  void box.offsetWidth; // reflow to restart animation
+  box.classList.add('celebrating');
+  msg.classList.add('show');
+  setTimeout(() => {
+    box.classList.remove('celebrating');
+    msg.classList.remove('show');
+  }, 3000);
 }
 
 function escHtml(s) {
