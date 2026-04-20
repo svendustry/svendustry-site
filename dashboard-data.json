@@ -4,29 +4,29 @@
     {
       "date": "2026-04-19",
       "highlights": [
-        "War Council complete — 13 warriors + 4 AI advisors approved revised plan",
-        "Forseti escalation protocol built and live — per-task model override confirmed",
-        "Watchdog auto-recovery active — gateway self-heals on failure, Telegram alerts wired",
-        "Tailscale installed — svendustry (100.83.83.126) + tablet both connected",
-        "Bragi two-tier model protocol live — Gemini 2.5 Pro standard, Claude Sonnet for elevated tasks only",
-        "TPS Framework v1.0 built by Tyr — session avg 81.7 (Strong), cost tracking live",
-        "Rán and Hermod armed with IDENTITY.md + SOUL.md by Bragi",
+        "War Council complete \u2014 13 warriors + 4 AI advisors approved revised plan",
+        "Forseti escalation protocol built and live \u2014 per-task model override confirmed",
+        "Watchdog auto-recovery active \u2014 gateway self-heals on failure, Telegram alerts wired",
+        "Tailscale installed \u2014 svendustry (100.83.83.126) + tablet both connected",
+        "Bragi two-tier model protocol live \u2014 Gemini 2.5 Pro standard, Claude Sonnet for elevated tasks only",
+        "TPS Framework v1.0 built by Tyr \u2014 session avg 81.7 (Strong), cost tracking live",
+        "R\u00e1n and Hermod armed with IDENTITY.md + SOUL.md by Bragi",
         "Duskholm Track 3 (Candlelight Study, 3 min) generated via Lyria Pro",
-        "FFmpeg stitching script built — 1-hour video pipeline ready to render",
-        "Income opportunity v2 analysis complete — Newsletter leads at 93/120",
-        "Smart memory manager deployed — threshold-based, replaces fixed 2-hour flush",
-        "Rán + Hermod JSON pipeline redesigned — structured output templates live",
+        "FFmpeg stitching script built \u2014 1-hour video pipeline ready to render",
+        "Income opportunity v2 analysis complete \u2014 Newsletter leads at 93/120",
+        "Smart memory manager deployed \u2014 threshold-based, replaces fixed 2-hour flush",
+        "R\u00e1n + Hermod JSON pipeline redesigned \u2014 structured output templates live",
         "Great Hall interactive warrior map built and deployed to svendustry.com",
-        "Mead Hall central gathering chamber added — idle warriors gather, milestone celebrations live",
+        "Mead Hall central gathering chamber added \u2014 idle warriors gather, milestone celebrations live",
         "Command Log dashboard live at svendustry.com/dashboard.html",
-        "Letter for Sven's brother written by Bragi — Great Hall explained for non-technical audience",
-        "Vision letter for friends and family written — The Night Shift That Never Ends"
+        "Letter for Sven's brother written by Bragi \u2014 Great Hall explained for non-technical audience",
+        "Vision letter for friends and family written \u2014 The Night Shift That Never Ends"
       ],
       "metrics": {
         "tasksCompleted": 31,
         "agentsDeployed": 13,
         "avgTPS": 81.7,
-        "apiSpend": "$54.77",
+        "apiSpend": "$26.51",
         "apiSpendNote": "Estimated via estimate-costs.sh (Vidar). Verify at console.anthropic.com."
       }
     }
