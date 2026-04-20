@@ -1,0 +1,147 @@
+{
+  "warriors": [
+    {
+      "name": "Odin",
+      "title": "Allfather",
+      "department": "High Seat",
+      "room": "high-seat",
+      "model": "Claude Sonnet 4.6",
+      "role": "Strategic manager",
+      "status": "active",
+      "lastStatus": "Orchestrating Phase 2",
+      "lore": "The Allfather traded an eye for wisdom and sent ravens across the nine worlds to gather intelligence. He commands the Great Hall with absolute authority and is the sole voice that speaks to Sven."
+    },
+    {
+      "name": "Heimdall",
+      "title": "Watchman",
+      "department": "Watch Tower",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "Opportunity scout",
+      "status": "idle",
+      "lastStatus": "Standing watch",
+      "lore": "Guardian of the Bifrost who can see a hundred miles in any direction and hear wool growing on sheep. He never sleeps — scanning markets, trends, and opportunities before Sven knows to look."
+    },
+    {
+      "name": "Rán",
+      "title": "Reader of Tides",
+      "department": "Watch Tower",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "Music trend research",
+      "status": "idle",
+      "lastStatus": "Pipeline redesign complete",
+      "lore": "Goddess of the sea who collects what the currents bring in her net. She gathers broadly, observes quietly, and delivers structured intelligence from the depths of the internet."
+    },
+    {
+      "name": "Thor",
+      "title": "The Builder",
+      "department": "The Forge",
+      "room": "forge",
+      "model": "DeepSeek V3.2",
+      "role": "Builder",
+      "status": "active",
+      "lastStatus": "Building Great Hall map",
+      "lore": "God of thunder and the forge. When something needs to be made real — code written, features built, files created — Thor does it. He does not overthink. He executes."
+    },
+    {
+      "name": "Frigg",
+      "title": "Keeper of the Hall",
+      "department": "The Forge",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "CFO",
+      "status": "idle",
+      "lastStatus": "Monitoring API costs",
+      "lore": "Odin's queen, keeper of the household and its secrets. She knows every cost, every API charge, every budget line. She warns before the gold runs out."
+    },
+    {
+      "name": "Tyr",
+      "title": "God of Justice",
+      "department": "The Forge",
+      "room": "forge",
+      "model": "Gemini Flash Lite",
+      "role": "Data analyst",
+      "status": "active",
+      "lastStatus": "TPS Framework v1.0 complete",
+      "lore": "The one-handed god who sacrificed his hand to bind the wolf Fenrir — he makes hard decisions for the good of all. When numbers need to mean something, Tyr finds the signal in the data."
+    },
+    {
+      "name": "Vidar",
+      "title": "The Silent One",
+      "department": "The Forge",
+      "room": "forge",
+      "model": "Gemini Flash Lite",
+      "role": "Infrastructure",
+      "status": "active",
+      "lastStatus": "Watchdog active, Tailscale live",
+      "lore": "The quietest of the gods, said to be as strong as Thor. He watches the infrastructure, keeps the lights on, and never speaks unless something breaks — and then he fixes it."
+    },
+    {
+      "name": "Mimir",
+      "title": "The Wise",
+      "department": "Library of Mimir",
+      "room": "mead-hall",
+      "model": "DeepSeek V3.2",
+      "role": "Researcher",
+      "status": "idle",
+      "lastStatus": "Income opportunity analysis complete",
+      "lore": "The wisest being in all the Nine Worlds. Odin preserved his severed head and consults it for counsel. Mimir goes where the surface does not reach and returns with what others missed."
+    },
+    {
+      "name": "Bragi",
+      "title": "God of Poetry",
+      "department": "Library of Mimir",
+      "room": "library",
+      "model": "Gemini 2.5 Pro",
+      "role": "Writer",
+      "status": "active",
+      "lastStatus": "Identity files for Rán and Hermod written",
+      "lore": "The skald of the gods, whose tongue is inscribed with runes. The first poet. If something needs to be read and felt — not just understood — Bragi wrote it."
+    },
+    {
+      "name": "Freya",
+      "title": "Mistress of Song",
+      "department": "Music Hall",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "Music creator",
+      "status": "idle",
+      "lastStatus": "20-prompt library queued",
+      "lore": "Goddess of love, beauty, and war who weeps tears of gold. She chooses only the worthy. In the Great Hall, she creates the music that defines Duskholm's sound and soul."
+    },
+    {
+      "name": "Hermod",
+      "title": "The Messenger",
+      "department": "Music Hall",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "Music publisher",
+      "status": "idle",
+      "lastStatus": "JSON pipeline ready",
+      "lore": "The swift messenger who rode through Hel itself to deliver word. He goes everywhere, misses nothing, and every package he delivers is ready to release."
+    },
+    {
+      "name": "Loki",
+      "title": "The Shapeshifter",
+      "department": "Music Hall",
+      "room": "music-hall",
+      "model": "Gemini Flash Lite",
+      "role": "Visual creator",
+      "status": "active",
+      "lastStatus": "Great Hall map art complete",
+      "lore": "The shapeshifter who becomes whatever the moment needs — a fly, a storm, an old woman. He sees what others miss and makes what others cannot imagine."
+    },
+    {
+      "name": "Eivor",
+      "title": "Shield-Maiden",
+      "department": "Shield Wall",
+      "room": "mead-hall",
+      "model": "Gemini Flash Lite",
+      "role": "General worker",
+      "status": "idle",
+      "lastStatus": "Standing by",
+      "lore": "A warrior of the shield wall — not the most famous name in the sagas, but the one who holds the line when everything else is chaos. Reliable, versatile, always ready."
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>⚔️ The Great Hall — Warrior Positions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -19,12 +19,16 @@ body{
 /* BG */
 .bg-layer{
   position:fixed;inset:0;
-  background:url('great-hall-map-bg.jpg') center/cover no-repeat;
+  background-image:url('great-hall-map-bg.jpg');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
   z-index:0;
 }
 .bg-overlay{
   position:fixed;inset:0;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.65);
   z-index:1;
 }
 
@@ -84,17 +88,20 @@ h1{
   min-height:140px;
   display:flex;
   flex-direction:column;
+  box-shadow:inset 0 0 30px rgba(0,0,0,0.4);
 }
 .room:hover{
-  box-shadow:0 0 18px rgba(201,123,58,0.4), 0 0 6px rgba(201,123,58,0.2);
+  box-shadow:inset 0 0 30px rgba(0,0,0,0.4), 0 0 18px rgba(201,123,58,0.4), 0 0 6px rgba(201,123,58,0.2);
   border-color:#E8B86D;
 }
 
+/* Room name: Cormorant Garamond, ember, uppercase, letter-spaced */
 .room-name{
-  font-family:'Cinzel',serif;
-  font-size:0.75rem;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:0.8rem;
+  font-weight:600;
   color:#C97B3A;
-  letter-spacing:0.08em;
+  letter-spacing:0.15em;
   text-transform:uppercase;
   margin-bottom:0.75rem;
   border-bottom:1px solid rgba(201,123,58,0.3);
@@ -146,15 +153,18 @@ h1{
 }
 
 /* GRID POSITIONS */
-/* Row 1: top-center = High Seat, top-right = Watch Tower */
 .room-high-seat   { grid-column:2; grid-row:1; }
 .room-watch-tower { grid-column:3; grid-row:1; }
-/* Row 2: left = Shield Wall, right = The Forge */
 .room-shield-wall { grid-column:1; grid-row:2; }
 .room-forge       { grid-column:3; grid-row:2; }
-/* Row 3: bottom-left = Music Hall, bottom-right = Library */
 .room-music-hall  { grid-column:1; grid-row:3; }
 .room-library     { grid-column:3; grid-row:3; }
+
+/* MEAD HALL ember flicker */
+@keyframes ember-flicker{
+  0%,100%{border-color:#C97B3A;box-shadow:inset 0 0 30px rgba(0,0,0,0.4),0 0 8px rgba(201,123,58,0.25)}
+  50%{border-color:#8B5E3C;box-shadow:inset 0 0 30px rgba(0,0,0,0.4),0 0 18px rgba(139,94,60,0.35)}
+}
 
 /* MEAD HALL — center */
 .room-mead-hall{
@@ -166,14 +176,15 @@ h1{
   display:flex;
   flex-direction:column;
   min-height:180px;
-  transition:box-shadow 0.25s, border-color 0.25s;
+  animation:ember-flicker 3s ease-in-out infinite;
 }
 .room-mead-hall:hover{
-  box-shadow:0 0 24px rgba(201,123,58,0.5), 0 0 8px rgba(201,123,58,0.3);
+  animation:none;
+  box-shadow:inset 0 0 30px rgba(0,0,0,0.4), 0 0 24px rgba(201,123,58,0.5), 0 0 8px rgba(201,123,58,0.3);
   border-color:#E8B86D;
 }
 .room-mead-hall .room-name{
-  font-size:0.8rem;
+  font-size:0.85rem;
 }
 .room-mead-hall .room-subtitle{
   font-size:0.7rem;
@@ -250,6 +261,7 @@ h1{
   display:flex;
   flex-direction:column;
   padding:2rem 1.5rem;
+  overflow-y:auto;
 }
 .detail-panel.open{ right:0; }
 
@@ -279,18 +291,24 @@ h1{
 .warrior-avatar.active{background:#C97B3A}
 .warrior-avatar.idle{background:#4a5568}
 
+/* Cormorant Garamond for warrior name in panel */
 .panel-name{
-  font-family:'Cinzel',serif;
-  font-size:1.3rem;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:28px;
+  font-weight:400;
   color:#e8e0d0;
   text-align:center;
   margin-bottom:0.25rem;
+  letter-spacing:0.04em;
 }
+/* Norse title: italic, muted gold, Cormorant Garamond */
 .panel-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
   font-style:italic;
-  color:#C97B3A;
+  font-weight:400;
+  color:#a09070;
   text-align:center;
-  font-size:0.95rem;
+  font-size:1.05rem;
   margin-bottom:1.5rem;
 }
 
@@ -309,25 +327,38 @@ h1{
 .panel-fields{
   display:flex;
   flex-direction:column;
-  gap:1rem;
+  gap:0;
   flex:1;
 }
+/* Thin hr between sections */
 .field-row{
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  padding-bottom:0.8rem;
+  border-bottom:1px solid #2a2a2a;
+  padding:0.75rem 0;
 }
+.field-row:last-child{
+  border-bottom:none;
+}
+/* Section labels: 10px, uppercase, letter-spaced, ember */
 .field-label{
-  font-size:0.7rem;
+  font-size:10px;
   color:#C97B3A;
   text-transform:uppercase;
-  letter-spacing:0.1em;
-  margin-bottom:0.25rem;
+  letter-spacing:0.2em;
+  margin-bottom:0.3rem;
   font-family:'Cinzel',serif;
 }
 .field-value{
   font-size:0.95rem;
   color:#e8e0d0;
-  line-height:1.4;
+  line-height:1.5;
+}
+/* Lore text: slightly subdued, slightly smaller */
+.field-value.lore-text{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1rem;
+  color:#c8bea8;
+  font-style:italic;
+  line-height:1.6;
 }
 
 /* legend */
@@ -444,24 +475,10 @@ if (sessionStorage.getItem('gh_cmd_auth') !== '1') {
   window.location.href = 'dashboard.html';
 }
 
-const WARRIORS = [
-  { name:'Odin',    title:'Allfather',         room:'high-seat',   model:'Gemini 2.5 Flash',  role:'Strategic manager',       status:'Orchestrating Phase 2',              active:true  },
-  { name:'Heimdall',title:'Watchman',           room:'mead-hall',   model:'Gemini Flash Lite', role:'Opportunity scout',       status:'Standing watch',                     active:false },
-  { name:'Rán',     title:'Reader of Tides',    room:'mead-hall',   model:'Gemini Flash Lite', role:'Music trend research',    status:'Pipeline redesign complete',         active:false },
-  { name:'Thor',    title:'The Builder',        room:'forge',       model:'DeepSeek V3.2',     role:'Builder',                 status:'Building Great Hall map',            active:true  },
-  { name:'Frigg',   title:'Keeper of the Hall', room:'mead-hall',   model:'Gemini Flash Lite', role:'CFO',                     status:'Monitoring API costs',               active:false },
-  { name:'Tyr',     title:'God of Justice',     room:'forge',       model:'Gemini Flash Lite', role:'Data analyst',            status:'TPS Framework v1.0 complete',        active:true  },
-  { name:'Vidar',   title:'The Silent One',     room:'forge',       model:'Gemini Flash Lite', role:'Infrastructure',          status:'Watchdog active, Tailscale live',    active:true  },
-  { name:'Mimir',   title:'The Wise',           room:'mead-hall',   model:'DeepSeek V3.2',     role:'Researcher',              status:'Income opportunity analysis complete',active:false },
-  { name:'Bragi',   title:'God of Poetry',      room:'library',     model:'Gemini 2.5 Pro',    role:'Writer',                  status:'Identity files for Rán and Hermod written', active:true },
-  { name:'Freya',   title:'Mistress of Song',   room:'mead-hall',   model:'Gemini Flash Lite', role:'Music creator',           status:'20-prompt library queued',           active:false },
-  { name:'Hermod',  title:'The Messenger',      room:'mead-hall',   model:'Gemini Flash Lite', role:'Music publisher',         status:'JSON pipeline ready',                active:false },
-  { name:'Loki',    title:'The Shapeshifter',   room:'music-hall',  model:'Gemini Flash Lite', role:'Visual creator',          status:'Great Hall map art complete',        active:true  },
-  { name:'Eivor',   title:'Shield-Maiden',      room:'mead-hall',   model:'Gemini Flash Lite', role:'General worker',          status:'Standing by',                        active:false },
-];
+let WARRIORS = [];
 
 function initials(name) {
-  return name.replace('á','a').replace('á','a').split(' ').map(w=>w[0].toUpperCase()).join('').slice(0,2);
+  return name.replace(/[áà]/g,'a').replace(/[éè]/g,'e').split(' ').map(w=>w[0].toUpperCase()).join('').slice(0,2);
 }
 
 function buildRooms() {
@@ -475,8 +492,9 @@ function buildRooms() {
     wrap.style.gap = '20px';
 
     const circle = document.createElement('div');
+    const isActive = w.status === 'active';
     const inMead = w.room === 'mead-hall';
-    circle.className = 'warrior ' + (w.active ? 'active' : (inMead ? 'mead-idle' : 'idle'));
+    circle.className = 'warrior ' + (isActive ? 'active' : (inMead ? 'mead-idle' : 'idle'));
     circle.textContent = initials(w.name);
     circle.title = w.name;
     circle.onclick = () => openPanel(i);
@@ -493,19 +511,21 @@ function buildRooms() {
 
 function openPanel(idx) {
   const w = WARRIORS[idx];
-  document.getElementById('panel-avatar').className = 'warrior-avatar ' + (w.active ? 'active' : 'idle');
+  const isActive = w.status === 'active';
+
+  document.getElementById('panel-avatar').className = 'warrior-avatar ' + (isActive ? 'active' : 'idle');
   document.getElementById('panel-avatar').textContent = initials(w.name);
   document.getElementById('panel-name').textContent = w.name;
   document.getElementById('panel-title').textContent = w.title;
 
   const statusEl = document.getElementById('panel-status');
-  statusEl.className = 'panel-status ' + (w.active ? 'active' : 'idle');
-  statusEl.textContent = w.active ? '● Active' : '○ Idle';
+  statusEl.className = 'panel-status ' + (isActive ? 'active' : 'idle');
+  statusEl.textContent = isActive ? '● Active' : '○ Idle';
 
   document.getElementById('panel-fields').innerHTML = `
     <div class="field-row">
       <div class="field-label">Department</div>
-      <div class="field-value">${escHtml(roomLabel(w.room))}</div>
+      <div class="field-value">${escHtml(w.department)}</div>
     </div>
     <div class="field-row">
       <div class="field-label">Model</div>
@@ -517,7 +537,11 @@ function openPanel(idx) {
     </div>
     <div class="field-row">
       <div class="field-label">Last Known Status</div>
-      <div class="field-value">${escHtml(w.status)}</div>
+      <div class="field-value">${escHtml(w.lastStatus)}</div>
+    </div>
+    <div class="field-row">
+      <div class="field-label">Lore</div>
+      <div class="field-value lore-text">${escHtml(w.lore)}</div>
     </div>
   `;
 
@@ -528,24 +552,11 @@ function closePanel() {
   document.getElementById('detail-panel').classList.remove('open');
 }
 
-function roomLabel(room) {
-  const map = {
-    'high-seat':'High Seat',
-    'watch-tower':'Watch Tower',
-    'forge':'The Forge',
-    'library':'Library of Mimir',
-    'music-hall':'Music Hall',
-    'shield-wall':'Shield Wall',
-    'mead-hall':'Mead Hall'
-  };
-  return map[room] || room;
-}
-
 function triggerMilestone() {
   const box = document.getElementById('room-mead-hall-box');
   const msg = document.getElementById('milestone-msg');
   box.classList.remove('celebrating');
-  void box.offsetWidth; // reflow to restart animation
+  void box.offsetWidth;
   box.classList.add('celebrating');
   msg.classList.add('show');
   setTimeout(() => {
@@ -566,7 +577,16 @@ document.addEventListener('click', function(e) {
   }
 });
 
-buildRooms();
+// Load warrior data from JSON then build
+fetch('warrior-data.json')
+  .then(r => r.json())
+  .then(data => {
+    WARRIORS = data.warriors;
+    buildRooms();
+  })
+  .catch(err => {
+    console.error('Failed to load warrior-data.json:', err);
+  });
 </script>
 </body>
 </html>
