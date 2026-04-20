@@ -5,19 +5,26 @@
       "date": "2026-04-19",
       "highlights": [
         "War Council complete — 13 warriors + 4 AI advisors approved revised plan",
-        "Forseti escalation protocol built and live",
-        "Watchdog auto-recovery active — gateway self-heals on failure",
-        "Tailscale installed — svendustry + tablet connected",
-        "Bragi switched to Gemini 2.5 Pro — Claude reserved for elevated tasks",
-        "TPS Framework v1.0 built by Tyr — session avg 81.7 (Strong)",
-        "Rán and Hermod armed with IDENTITY.md + SOUL.md",
-        "Duskholm Track 3 (Candlelight Study, 3 min) generated",
-        "FFmpeg stitching script built — 1-hour video pipeline ready",
-        "Income opportunity v2 analysis complete — Newsletter leads at 93/120"
+        "Forseti escalation protocol built and live — per-task model override confirmed",
+        "Watchdog auto-recovery active — gateway self-heals on failure, Telegram alerts wired",
+        "Tailscale installed — svendustry (100.83.83.126) + tablet both connected",
+        "Bragi two-tier model protocol live — Gemini 2.5 Pro standard, Claude Sonnet for elevated tasks only",
+        "TPS Framework v1.0 built by Tyr — session avg 81.7 (Strong), cost tracking live",
+        "Rán and Hermod armed with IDENTITY.md + SOUL.md by Bragi",
+        "Duskholm Track 3 (Candlelight Study, 3 min) generated via Lyria Pro",
+        "FFmpeg stitching script built — 1-hour video pipeline ready to render",
+        "Income opportunity v2 analysis complete — Newsletter leads at 93/120",
+        "Smart memory manager deployed — threshold-based, replaces fixed 2-hour flush",
+        "Rán + Hermod JSON pipeline redesigned — structured output templates live",
+        "Great Hall interactive warrior map built and deployed to svendustry.com",
+        "Mead Hall central gathering chamber added — idle warriors gather, milestone celebrations live",
+        "Command Log dashboard live at svendustry.com/dashboard.html",
+        "Letter for Sven's brother written by Bragi — Great Hall explained for non-technical audience",
+        "Vision letter for friends and family written — The Night Shift That Never Ends"
       ],
       "metrics": {
-        "tasksCompleted": 22,
-        "agentsDeployed": 8,
+        "tasksCompleted": 31,
+        "agentsDeployed": 13,
         "avgTPS": 81.7,
         "apiSpend": "$26.51"
       }
