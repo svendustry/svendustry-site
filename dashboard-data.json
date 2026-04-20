@@ -26,7 +26,8 @@
         "tasksCompleted": 31,
         "agentsDeployed": 13,
         "avgTPS": 81.7,
-        "apiSpend": "$26.51"
+        "apiSpend": "$54.77",
+        "apiSpendNote": "Estimated via estimate-costs.sh (Vidar). Verify at console.anthropic.com."
       }
     }
   ]
