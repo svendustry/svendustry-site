@@ -37,11 +37,11 @@
       "name": "Thor",
       "title": "The Builder",
       "department": "The Forge",
-      "room": "forge",
+      "room": "mead-hall",
       "model": "DeepSeek V3.2",
       "role": "Builder",
-      "status": "active",
-      "lastStatus": "Building Great Hall map",
+      "status": "idle",
+      "lastStatus": "Built Route Planner v1",
       "lore": "God of thunder and the forge. When something needs to be made real — code written, features built, files created — Thor does it. He does not overthink. He executes."
     },
     {
@@ -70,11 +70,11 @@
       "name": "Vidar",
       "title": "The Silent One",
       "department": "The Forge",
-      "room": "forge",
+      "room": "mead-hall",
       "model": "Gemini Flash Lite",
       "role": "Infrastructure",
-      "status": "active",
-      "lastStatus": "Watchdog active, Tailscale live",
+      "status": "idle",
+      "lastStatus": "Purged zombie sessions",
       "lore": "The quietest of the gods, said to be as strong as Thor. He watches the infrastructure, keeps the lights on, and never speaks unless something breaks — and then he fixes it."
     },
     {
