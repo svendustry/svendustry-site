@@ -239,6 +239,20 @@
       <button class="cmd" data-cmd="ps -ef | grep -E 'codex|tmux' | grep -v grep"><span class="cmd-text">ps -ef | grep -E 'codex|tmux' | grep -v grep</span><span class="cmd-icon">copy</span></button>
       <p class="item-desc">Find running Codex and tmux processes.</p>
     </div>
+
+    <div class="item">
+      <button class="cmd" data-cmd="pkill -f codex"><span class="cmd-text">pkill -f codex</span><span class="cmd-icon">copy</span></button>
+      <button class="cmd" data-cmd="pkill -9 -f codex"><span class="cmd-text">pkill -9 -f codex</span><span class="cmd-icon">copy</span></button>
+      <p class="item-desc">End all Codex processes. Use the force-kill variant only if normal termination does not work.</p>
+      <p class="note danger"><strong>Run this from outside any Codex session you want to keep.</strong> It can terminate the current Codex process too.</p>
+    </div>
+
+    <div class="item">
+      <button class="cmd" data-cmd="tmux ls"><span class="cmd-text">tmux ls</span><span class="cmd-icon">copy</span></button>
+      <button class="cmd template" data-cmd="tmux kill-session -t <SESSION_NAME>"><span class="cmd-text">tmux kill-session -t <span class="ph">&lt;SESSION_NAME&gt;</span></span><span class="cmd-icon">copy</span></button>
+      <button class="cmd" data-cmd="tmux kill-server"><span class="cmd-text">tmux kill-server</span><span class="cmd-icon">copy</span></button>
+      <p class="item-desc">End tmux-hosted Codex sessions. Kill a specific session when possible; <code class="inline">tmux kill-server</code> ends every tmux session.</p>
+    </div>
   </section>
 
   <section id="s3">
