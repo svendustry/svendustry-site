@@ -34,15 +34,31 @@
     }
 
     body::before {
-      content: ":(  :(  :(  :(  :(  :(  :(  :(  :(  :(  :(  :(";
+      content: "😢  😭  😞  ☹️  😢  😭  😞  ☹️  😢  😭  😞  ☹️";
       position: fixed;
-      inset: 12px auto auto -24px;
+      inset: 10px auto auto -28px;
       z-index: 0;
       color: rgba(255, 255, 255, 0.12);
       font-size: clamp(28px, 7vw, 76px);
       font-weight: 900;
       white-space: nowrap;
       transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "☹️ 😢 😭 😞 ☹️ 😢 😭 😞 ☹️ 😢 😭 😞 ☹️";
+      position: fixed;
+      right: -70px;
+      bottom: 8vh;
+      z-index: 0;
+      color: rgba(255, 255, 255, 0.08);
+      font-size: clamp(34px, 8vw, 92px);
+      font-weight: 900;
+      max-width: 620px;
+      line-height: 1.35;
+      text-align: center;
+      transform: rotate(11deg);
       pointer-events: none;
     }
 
@@ -102,6 +118,33 @@
       color: var(--pink);
       font-size: 16px;
       font-weight: 900;
+    }
+
+    .music-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .music-box button {
+      min-height: 42px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--pink);
+      color: #241822;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .music-box button:hover {
+      background: #ffadc8;
     }
 
     figure {
@@ -182,6 +225,27 @@
       word-break: break-word;
     }
 
+    .emoji-rain {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 28px;
+      padding: 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .emoji-rain span {
+      display: grid;
+      place-items: center;
+      min-height: 48px;
+      border-radius: 8px;
+      background: rgba(25, 20, 29, 0.46);
+      font-size: clamp(28px, 5vw, 54px);
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.24));
+      transform: rotate(var(--tilt));
+    }
+
     .sweet {
       margin-top: 28px;
       padding: 30px 18px;
@@ -231,6 +295,10 @@
       .lula {
         grid-column: auto;
       }
+
+      .emoji-rain {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
     }
   </style>
 </head>
@@ -242,6 +310,10 @@
         <h1>Audrey</h1>
         <p class="subtitle">A beloved party pooper, a cherished mood dimmer, and the reason every gathering keeps one emergency blanket for vibes.</p>
         <div class="sad-badge" aria-label="sad badge">:( officially emotionally overcast :(</div>
+        <div class="music-box">
+          <button id="partyPooperSong" type="button">Play sad party song</button>
+          <span id="musicStatus">Silent, because Audrey requested it.</span>
+        </div>
       </div>
       <figure>
         <img src="sad-angi.jpg" alt="Angi making a dramatic sad face in pink glasses">
@@ -276,10 +348,72 @@
       :( &nbsp; :(( &nbsp; T_T &nbsp; :( &nbsp; :/ &nbsp; :(( &nbsp; T_T &nbsp; :( &nbsp; :(
     </div>
 
+    <div class="emoji-rain" aria-label="sad emoji wall">
+      <span style="--tilt:-8deg">😢</span><span style="--tilt:7deg">😭</span><span style="--tilt:-3deg">☹️</span><span style="--tilt:9deg">😞</span><span style="--tilt:-6deg">😢</span>
+      <span style="--tilt:5deg">😭</span><span style="--tilt:-10deg">☹️</span><span style="--tilt:4deg">😞</span><span style="--tilt:-4deg">😢</span><span style="--tilt:8deg">😭</span>
+      <span style="--tilt:6deg">☹️</span><span style="--tilt:-7deg">😞</span><span style="--tilt:10deg">😢</span><span style="--tilt:-5deg">😭</span><span style="--tilt:3deg">☹️</span>
+      <span style="--tilt:-9deg">😞</span><span style="--tilt:7deg">😢</span><span style="--tilt:-2deg">😭</span><span style="--tilt:9deg">☹️</span><span style="--tilt:-6deg">😞</span>
+    </div>
+
     <section class="sweet" aria-label="Sweet Dreams ending">
       <p>For Audrey, Angi, and the magnificent Lula.</p>
       <h2>Sweet Dreams</h2>
     </section>
   </main>
+  <script>
+    const button = document.getElementById("partyPooperSong");
+    const status = document.getElementById("musicStatus");
+    let playing = false;
+    let context;
+    let timers = [];
+
+    function clearSong() {
+      timers.forEach((timer) => clearTimeout(timer));
+      timers = [];
+      playing = false;
+      button.textContent = "Play sad party song";
+      status.textContent = "Silent, because Audrey requested it.";
+    }
+
+    function note(time, frequency, duration, type = "triangle", gain = 0.06) {
+      const oscillator = context.createOscillator();
+      const volume = context.createGain();
+      oscillator.type = type;
+      oscillator.frequency.value = frequency;
+      volume.gain.setValueAtTime(0, time);
+      volume.gain.linearRampToValueAtTime(gain, time + 0.02);
+      volume.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+      oscillator.connect(volume).connect(context.destination);
+      oscillator.start(time);
+      oscillator.stop(time + duration + 0.03);
+    }
+
+    function playSong() {
+      if (playing) {
+        clearSong();
+        return;
+      }
+
+      context = context || new AudioContext();
+      const now = context.currentTime + 0.04;
+      const melody = [
+        [0, 392, 0.22], [0.26, 392, 0.22], [0.52, 349, 0.28], [0.86, 330, 0.42],
+        [1.38, 294, 0.22], [1.64, 294, 0.22], [1.9, 262, 0.3], [2.28, 220, 0.56],
+        [3.06, 330, 0.2], [3.3, 294, 0.2], [3.54, 262, 0.26], [3.9, 196, 0.7]
+      ];
+
+      melody.forEach(([offset, frequency, duration]) => {
+        note(now + offset, frequency, duration);
+        note(now + offset, frequency / 2, duration + 0.05, "sine", 0.025);
+      });
+
+      playing = true;
+      button.textContent = "Stop the sadness";
+      status.textContent = "Original tiny party-pooper lament is playing.";
+      timers.push(setTimeout(clearSong, 5200));
+    }
+
+    button.addEventListener("click", playSong);
+  </script>
 </body>
 </html>
