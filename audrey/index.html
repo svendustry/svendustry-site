@@ -272,6 +272,65 @@
       letter-spacing: 0;
     }
 
+    .love-pop {
+      position: fixed;
+      right: min(24px, 4vw);
+      bottom: min(24px, 4vw);
+      z-index: 10;
+      width: min(360px, calc(100vw - 32px));
+      padding: 28px 20px 22px;
+      border: 2px solid rgba(233, 151, 181, 0.72);
+      border-radius: 8px;
+      background: #f6edf7;
+      color: #2d2233;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+      text-align: center;
+      transform: translateY(22px) scale(0.96);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .love-pop::before {
+      content: "😢 😭 ☹️";
+      display: block;
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+
+    .love-pop.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .love-pop p {
+      margin: 0;
+      color: #2d2233;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 8vw, 64px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .love-pop button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(45, 34, 51, 0.1);
+      color: #2d2233;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
     @media (max-width: 860px) {
       main {
         width: min(100% - 24px, 700px);
@@ -308,7 +367,7 @@
       <div class="headline">
         <p class="eyebrow">The Department of Respectful Sighing Presents</p>
         <h1>Audrey</h1>
-        <p class="subtitle">A beloved party pooper, a cherished mood dimmer, and the reason every gathering keeps one emergency blanket for vibes.</p>
+        <p class="subtitle">A beloved party pooper only because she will not come hang out more, which is rude because tonight at her house was amazing.</p>
         <div class="sad-badge" aria-label="sad badge">:( officially emotionally overcast :(</div>
         <div class="music-box">
           <button id="partyPooperSong" type="button">Play sad party song</button>
@@ -317,18 +376,18 @@
       </div>
       <figure>
         <img src="sad-angi.jpg" alt="Angi making a dramatic sad face in pink glasses">
-        <figcaption>Angi demonstrating the exact face required when Audrey says the party is too loud.</figcaption>
+        <figcaption>Angi demonstrating the exact face required when Audrey refuses to be available for more hangouts.</figcaption>
       </figure>
     </section>
 
     <section class="sad-cloud" aria-label="Audrey notes">
       <article class="tile">
         <strong>Party Report</strong>
-        <p>The snacks were out. The music was up. Audrey sensed joy and filed a formal complaint.</p>
+        <p>The house was fun. The company was excellent. Audrey still somehow failed to schedule the next hangout immediately.</p>
       </article>
       <article class="tile">
         <strong>Mood Forecast</strong>
-        <p>Cloudy with a chance of leaving early, followed by a cozy text that somehow makes everyone forgive her.</p>
+        <p>Cloudy with a chance of everyone being sad because Audrey should clearly hang out more.</p>
       </article>
       <article class="tile lula">
         <strong>Lula Clause</strong>
@@ -336,11 +395,11 @@
       </article>
       <article class="tile">
         <strong>Known Talent</strong>
-        <p>Can make a room say “awww” and “come onnnn” at the same time. Rare gift. Terrible power.</p>
+        <p>Can host an amazing night and then make everyone miss her before the night is even over. Rare gift. Terrible power.</p>
       </article>
       <article class="tile">
         <strong>Our Verdict</strong>
-        <p>Yes, she poops the party. Yes, we love her anyway. These facts coexist sadly but beautifully.</p>
+        <p>Yes, she poops the party by not hanging out enough. Yes, we love her anyway. These facts coexist sadly but beautifully.</p>
       </article>
     </section>
 
@@ -355,10 +414,15 @@
       <span style="--tilt:-9deg">😞</span><span style="--tilt:7deg">😢</span><span style="--tilt:-2deg">😭</span><span style="--tilt:9deg">☹️</span><span style="--tilt:-6deg">😞</span>
     </div>
 
-    <section class="sweet" aria-label="Sweet Dreams ending">
+    <section class="sweet" id="sweetDreams" aria-label="Sweet Dreams ending">
       <p>For Audrey, Angi, and the magnificent Lula.</p>
       <h2>Sweet Dreams</h2>
     </section>
+
+    <div class="love-pop" id="lovePop" role="status" aria-live="polite">
+      <button type="button" id="loveClose" aria-label="Close surprise">×</button>
+      <p>we love you</p>
+    </div>
   </main>
   <script>
     const button = document.getElementById("partyPooperSong");
@@ -414,6 +478,28 @@
     }
 
     button.addEventListener("click", playSong);
+
+    const lovePop = document.getElementById("lovePop");
+    const loveClose = document.getElementById("loveClose");
+    const sweetDreams = document.getElementById("sweetDreams");
+    let surpriseShown = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (surpriseShown) {
+        return;
+      }
+
+      if (entries.some((entry) => entry.isIntersecting)) {
+        surpriseShown = true;
+        lovePop.classList.add("show");
+      }
+    }, { threshold: 0.55 });
+
+    observer.observe(sweetDreams);
+
+    loveClose.addEventListener("click", () => {
+      lovePop.classList.remove("show");
+    });
   </script>
 </body>
 </html>
