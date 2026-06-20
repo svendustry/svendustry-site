@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audrey Appreciation Department</title>
+  <meta name="description" content="A tragically funny appreciation page for Audrey, Lula, and the noble art of party pooping.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f6edf7;
+      --muted: #c9b9cc;
+      --night: #19141d;
+      --plum: #49334f;
+      --blue: #4f6f86;
+      --pink: #e997b5;
+      --gold: #d7b36a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(233, 151, 181, 0.2), transparent 24rem),
+        radial-gradient(circle at 90% 20%, rgba(79, 111, 134, 0.28), transparent 26rem),
+        linear-gradient(150deg, #19141d 0%, #2c2234 47%, #14212b 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: ":(  :(  :(  :(  :(  :(  :(  :(  :(  :(  :(  :(";
+      position: fixed;
+      inset: 12px auto auto -24px;
+      z-index: 0;
+      color: rgba(255, 255, 255, 0.12);
+      font-size: clamp(28px, 7vw, 76px);
+      font-weight: 900;
+      white-space: nowrap;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0 46px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 64px);
+    }
+
+    .headline {
+      padding: 10px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 100px);
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 640px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(20px, 2.7vw, 32px);
+      line-height: 1.12;
+    }
+
+    .sad-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 12px 14px;
+      border: 1px dashed rgba(246, 237, 247, 0.42);
+      border-radius: 8px;
+      background: rgba(25, 20, 29, 0.62);
+      color: var(--pink);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    figure {
+      margin: 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      transform: rotate(-1.4deg);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: 50% 52%;
+      border-radius: 6px;
+      filter: saturate(0.92) contrast(1.05);
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .sad-cloud {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0 0;
+    }
+
+    .tile {
+      min-height: 138px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .tile strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    .tile p {
+      margin: 0;
+      color: #eaddec;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .lula {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(233, 151, 181, 0.22), rgba(215, 179, 106, 0.16));
+    }
+
+    .lula strong {
+      color: #ffd98a;
+    }
+
+    .faces {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      color: rgba(246, 237, 247, 0.86);
+      font-size: clamp(20px, 4vw, 46px);
+      font-weight: 900;
+      line-height: 1.2;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .sweet {
+      margin-top: 28px;
+      padding: 30px 18px;
+      border-radius: 8px;
+      background: #f6edf7;
+      color: var(--night);
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .sweet p {
+      margin: 0;
+      color: #5a4f5f;
+      font-size: 17px;
+    }
+
+    .sweet h2 {
+      margin: 8px 0 0;
+      color: #2d2233;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 9vw, 112px);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 860px) {
+      main {
+        width: min(100% - 24px, 700px);
+        padding-top: 18px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      figure {
+        order: -1;
+        transform: none;
+      }
+
+      .sad-cloud {
+        grid-template-columns: 1fr;
+      }
+
+      .lula {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-label="Audrey tribute">
+      <div class="headline">
+        <p class="eyebrow">The Department of Respectful Sighing Presents</p>
+        <h1>Audrey</h1>
+        <p class="subtitle">A beloved party pooper, a cherished mood dimmer, and the reason every gathering keeps one emergency blanket for vibes.</p>
+        <div class="sad-badge" aria-label="sad badge">:( officially emotionally overcast :(</div>
+      </div>
+      <figure>
+        <img src="sad-angi.jpg" alt="Angi making a dramatic sad face in pink glasses">
+        <figcaption>Angi demonstrating the exact face required when Audrey says the party is too loud.</figcaption>
+      </figure>
+    </section>
+
+    <section class="sad-cloud" aria-label="Audrey notes">
+      <article class="tile">
+        <strong>Party Report</strong>
+        <p>The snacks were out. The music was up. Audrey sensed joy and filed a formal complaint.</p>
+      </article>
+      <article class="tile">
+        <strong>Mood Forecast</strong>
+        <p>Cloudy with a chance of leaving early, followed by a cozy text that somehow makes everyone forgive her.</p>
+      </article>
+      <article class="tile lula">
+        <strong>Lula Clause</strong>
+        <p>All rulings are overturned if Lula is present. Lula is perfect. Lula is the doggie child, the tiny judge, the emotional support celebrity.</p>
+      </article>
+      <article class="tile">
+        <strong>Known Talent</strong>
+        <p>Can make a room say “awww” and “come onnnn” at the same time. Rare gift. Terrible power.</p>
+      </article>
+      <article class="tile">
+        <strong>Our Verdict</strong>
+        <p>Yes, she poops the party. Yes, we love her anyway. These facts coexist sadly but beautifully.</p>
+      </article>
+    </section>
+
+    <div class="faces" aria-label="sad faces">
+      :( &nbsp; :(( &nbsp; T_T &nbsp; :( &nbsp; :/ &nbsp; :(( &nbsp; T_T &nbsp; :( &nbsp; :(
+    </div>
+
+    <section class="sweet" aria-label="Sweet Dreams ending">
+      <p>For Audrey, Angi, and the magnificent Lula.</p>
+      <h2>Sweet Dreams</h2>
+    </section>
+  </main>
+</body>
+</html>
