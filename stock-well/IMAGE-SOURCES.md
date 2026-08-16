@@ -1,128 +1,79 @@
-# Image Sources & Licenses — Stock-Well Preview (Visual Pass 2)
+# Image Sources & Licenses — Stock-Well Preview (Visual Pass 3)
 
-All images in `public/img/` are properly-licensed free stock photos. No
-photos of "Stock-Well" machines exist; none are claimed. Images were
-downloaded 2026-08-14, cropped to the site's aspect ratios (center crop),
-and encoded as WebP (≤ 200 KB each).
+All images in `public/img/` are properly-licensed free stock photos, all
+downloaded 2026-08-16. Every image is a **derivative**: center-window cropped
+to the site's aspect ratio, resized to the published pixel size, and encoded
+as WebP (≤ 200 KB each).
 
-**License key:** CC BY = attribution required · CC BY-SA = attribution +
-share-alike · CC BY-ND = attribution, no derivatives (file served
-unmodified) · CC0 = public domain, no attribution required.
+**Smart-cooler imagery (pass 3 requirement):** hero, service, and all city
+pages now depict modern commercial smart-cooler installations (illuminated
+glass-door beverage coolers with digital menu displays / ordering terminals)
+instead of the pass-2 office, generic-vending, and desert-landscape photos.
 
-Attribution is also rendered in the image `alt` text where useful; the
-author + source line below is the full license-compliant attribution.
+**License key:** CC BY-SA = attribution + share-alike (all pass-3 assets).
 
----
+**Honesty note:** the city-page images are **illustrations of the
+installation type** Stock-Well places — they are not photographs of the
+named Arizona city, and the alt text says so. Two source photographs are
+used: one Munich E-Kiosk installation (primary) and one Kyoto smart-kiosk
+station installation (city pages), rotated across the six city routes.
 
-## Hero — `public/img/hero.webp`
-
-| | |
-|---|---|
-| File | BAKOKO CDS 2F Work Space Aisle Cropped |
-| Author | BAKOKO (Flickr) |
-| License | CC BY-ND 2.0 — <https://creativecommons.org/licenses/by-nd/2.0/> |
-| Source | <https://www.flickr.com/photos/77591562@N04/8269957616> |
-| Served as | Original 1024×683, **unmodified** (BY-ND: no crop/filter) |
-| Attribution | BAKOKO, “BAKOKO CDS 2F Work Space Aisle Cropped”, CC BY-ND 2.0, via Flickr |
-
-## Home, “Free. Full-service.” — `public/img/service.webp`
-
-| | |
-|---|---|
-| File | Food vending machine in Geltendorf 02.jpg |
-| Author | Kritzolina |
-| License | CC BY-SA 4.0 — <https://creativecommons.org/licenses/by-sa/4.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Food_vending_machine_in_Geltendorf_02.jpg> |
-| Served as | Center crop 1000×1250 (derivatives permitted under BY-SA) |
-| Attribution | Kritzolina, “Food vending machine in Geltendorf 02”, CC BY-SA 4.0, via Wikimedia Commons |
-
-## Contact page — `public/img/contact.webp`
-
-| | |
-|---|---|
-| File | Workspace (Unsplash).jpg |
-| Author | Damian Patkowski |
-| License | CC0 1.0 — <https://creativecommons.org/publicdomain/zero/1.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Workspace_(Unsplash).jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | Not required (CC0). Recorded here: Damian Patkowski, via Wikimedia Commons. |
-
-## City pages — `public/img/{phoenix,scottsdale,glendale,peoria,surprise,west-valley}.webp`
-
-City textures are abstract arid-landscape photos. They are **not** landmark
-identifiers; no city page claims to show a specific place.
-
-### Phoenix — `phoenix.webp`
-| | |
-|---|---|
-| File | Desert saguaros.jpg |
-| Author | neepster (Phoenix, USA) |
-| License | CC BY-SA 2.0 — <https://creativecommons.org/licenses/by-sa/2.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Desert_saguaros.jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | neepster, “Desert saguaros”, CC BY-SA 2.0, via Wikimedia Commons |
-
-### Scottsdale — `scottsdale.webp`
-| | |
-|---|---|
-| File | Rock Climbers In Red Rock Canyon (203237435).jpeg |
-| Author | Jovonni Pharr |
-| License | CC BY 3.0 — <https://creativecommons.org/licenses/by/3.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Rock_Climbers_In_Red_Rock_Canyon_(203237435).jpeg> |
-| Served as | Top-region crop 1200×800 (verified: crop contains rock strata only, no people) |
-| Attribution | Jovonni Pharr, “Rock Climbers In Red Rock Canyon (203237435)”, CC BY 3.0, via Wikimedia Commons |
-
-### Glendale — `glendale.webp`
-| | |
-|---|---|
-| File | Downtown Tempe METRO Station - 2009-11-13.jpg |
-| Author | Cygnusloop99 |
-| License | CC BY-SA 3.0 — <https://creativecommons.org/licenses/by-sa/3.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Downtown_Tempe_METRO_Station_-_2009-11-13.jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | Cygnusloop99, “Downtown Tempe METRO Station”, CC BY-SA 3.0, via Wikimedia Commons |
-
-### Peoria — `peoria.webp`
-| | |
-|---|---|
-| File | Keep Out, Arizona Desert 8-13 (15274375787).jpg |
-| Author | inkknife_2000 |
-| License | CC BY-SA 2.0 — <https://creativecommons.org/licenses/by-sa/2.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Keep_Out,_Arizona_Desert_8-13_(15274375787).jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | inkknife_2000, “Keep Out, Arizona Desert 8-13”, CC BY-SA 2.0, via Wikimedia Commons |
-
-### Surprise — `surprise.webp`
-| | |
-|---|---|
-| File | Carnegiea Sonoran Desert 05.jpg |
-| Author | Nicholas Hartmann |
-| License | CC BY-SA 4.0 — <https://creativecommons.org/licenses/by-sa/4.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Carnegiea_Sonoran_Desert_05.jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | Nicholas Hartmann, “Carnegiea Sonoran Desert 05”, CC BY-SA 4.0, via Wikimedia Commons |
-
-### West Valley — `west-valley.webp`
-| | |
-|---|---|
-| File | Desert Sunset - Flickr - treegrow.jpg |
-| Author | Katja Schulz (Washington, D.C., USA) |
-| License | CC BY 2.0 — <https://creativecommons.org/licenses/by/2.0/> |
-| Source | <https://commons.wikimedia.org/wiki/File:Desert_Sunset_-_Flickr_-_treegrow.jpg> |
-| Served as | Center crop 1200×800 |
-| Attribution | Katja Schulz, “Desert Sunset”, CC BY 2.0, via Wikimedia Commons |
+Full attribution also rendered in image `alt` text and the per-page credit
+line.
 
 ---
 
-## Sourcing notes
+## Source A — Munich E-Kiosk (primary; hero, service, contact, glendale, surprise, west-valley)
 
-- Sourced via Wikimedia Commons (key-free, machine-readable license
-  metadata from the MediaWiki API) and Openverse/Flickr; Pexels/Unsplash
-  were skipped (API key required).
-- Filtered to commercial-usable licenses only (no NC); all six city
-  images and the two interior images carry attribution requirements,
-  satisfied above.
-- The Glendale image shows an Arizona METRO street scene (downtown Tempe);
-  used as a generic “street texture” for a Phoenix-metro city page, per
-  the handoff constraint that city images be abstract/local texture, not
-  landmark claims. The page copy does not name Tempe.
+| | |
+|---|---|
+| File | Automaten im E-Kiosk in der Albert-Roßhaupter-Straße 2 München 2024-12-18.jpg |
+| Author | Strubbl |
+| License | CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/ |
+| Source | https://upload.wikimedia.org/wikipedia/commons/d/d7/Automaten_im_E-Kiosk_in_der_Albert-Ro%C3%9Fhaupter-Stra%C3%9Fe_2_M%C3%BCnchen_2024-12-18.jpg |
+| Native size | 5472 × 3648 |
+| Derived | Each asset: window crop (exact box in `staged-manifest.json`), resized, WebP |
+| Attribution | Strubbl, “Automaten im E-Kiosk in der Albert-Roßhaupter-Straße 2 München 2024-12-18”, CC BY-SA 4.0, via Wikimedia Commons |
+
+### Assets derived from Source A
+
+| Asset | Served size | Crop box (px, top-left, bottom-right) |
+|---|---|---|
+| `hero.webp` | 1024 × 683 | full frame (1, 0, 5470, 3648) |
+| `service.webp` | 1000 × 1250 | (1778, 285, 4240, 3362) — center coolers + displays |
+| `contact.webp` | 1200 × 800 | (0, 693, 3392, 2954) — left coolers |
+| `glendale.webp` | 1200 × 800 | (2517, 1313, 4049, 2334) — mid coolers zoom |
+| `surprise.webp` | 1200 × 800 | (1477, 1094, 4213, 2918) — coolers + ordering terminal (re-cropped rightward 2026-08-16) |
+| `west-valley.webp` | 1200 × 800 | (820, 912, 3556, 2736) — wider left-center |
+
+---
+
+## Source B — Kyoto smart kiosk (city pages: phoenix, scottsdale, peoria)
+
+| | |
+|---|---|
+| File | Smart Kiosk Kyoto Station No2-3Homes.jpg |
+| Author | Mr.ちゅらさん |
+| License | CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/ |
+| Source | https://upload.wikimedia.org/wikipedia/commons/0/0d/Smart_Kiosk_Kyoto_Station_No2-3Homes.jpg |
+| Native size | 3840 × 2160 |
+| Derived | Each asset: window crop, resized, WebP |
+| Attribution | Mr.ちゅらさん, “Smart Kiosk Kyoto Station No2-3Homes”, CC BY-SA 4.0, via Wikimedia Commons |
+
+### Assets derived from Source B
+
+| Asset | Served size | Crop box (px) |
+|---|---|---|
+| `phoenix.webp` | 1200 × 800 | (600, 0, 3840, 2160) — kiosk zone |
+| `scottsdale.webp` | 1200 × 800 | (1460, 287, 3840, 1873) — right kiosk zoom |
+| `peoria.webp` | 1200 × 800 | (346, 287, 2726, 1873) — left kiosk zoom |
+
+---
+
+## Superseded pass-2 assets (replaced in pass 3)
+
+hero (BAKOKO, office aisle, CC BY-ND), service (Kritzolina, generic food
+vending machine, CC BY-SA), contact (Damian Patkowski, workspace, CC0), and
+the six desert-landscape city textures (neepster, Jovonni Pharr,
+Cygnusloop99, inkknife_2000, Nicholas Hartmann, Katja Schulz) were removed
+from `public/img/` in pass 3 and are no longer served.
