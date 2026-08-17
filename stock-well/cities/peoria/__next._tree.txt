@@ -1,4 +1,4 @@
-:HL["/stock-well/_next/static/chunks/3i8a3z7s6a2w2.css","style"]
+:HL["/stock-well/_next/static/chunks/3ksme77n037lu.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap","style"]
 :HL["/stock-well/img/peoria.webp","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"cities","param":null,"prefetchHints":4192,"slots":{"children":{"name":"city","param":{"type":"d","key":"peoria","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"nQlRE2KgVtxrkH168WNIH"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"cities","param":null,"prefetchHints":4192,"slots":{"children":{"name":"city","param":{"type":"d","key":"peoria","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"9vy8Q1TuFwXAMkFgDfKjI"}
